@@ -32,7 +32,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import cash.just.support.CashSupport
-import cash.just.support.pages.GeneralSupportPage
+import cash.just.support.pages.Topic
 import cash.just.ui.CashUI
 import com.breadwallet.R
 import com.breadwallet.legacy.presenter.customviews.BRKeyboard
@@ -138,7 +138,7 @@ class ReceiveController(args: Bundle) : BaseMobiusController<M, E, F>(args) {
     override fun bindView(modelFlow: Flow<M>): Flow<E> {
         faq_button.setOnClickListener {
             router.fragmentManager()?.let {
-                CashUI.showSupportPage(CashSupport.Builder().detail(GeneralSupportPage.RECEIVE), it)
+                CashUI.showSupportPage(CashSupport.Builder().detail(Topic.RECEIVE), it)
             }
         }
         return merge(

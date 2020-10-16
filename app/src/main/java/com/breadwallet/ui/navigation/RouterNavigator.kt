@@ -25,7 +25,7 @@
 package com.breadwallet.ui.navigation
 
 import cash.just.support.CashSupport
-import cash.just.support.pages.GeneralSupportPage
+import cash.just.support.pages.Topic
 import cash.just.ui.CashUI
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -48,7 +48,6 @@ import com.breadwallet.tools.util.asLink
 import com.breadwallet.tools.util.btc
 import com.breadwallet.ui.addwallets.AddWalletsController
 import com.breadwallet.ui.auth.AuthenticationController
-import com.breadwallet.ui.changehandlers.BottomSheetChangeHandler
 import com.breadwallet.ui.controllers.AlertDialogController
 import com.breadwallet.ui.controllers.SignalController
 import com.breadwallet.ui.disabled.DisabledController
@@ -135,13 +134,9 @@ class RouterNavigator(
     }
 
     override fun brdRewards() {
-        val rewardsUrl = HTTPServer.getPlatformUrl(HTTPServer.URL_REWARDS)
-        router.pushController(
-            WebController(rewardsUrl).asTransaction(
-                VerticalChangeHandler(),
-                VerticalChangeHandler()
-            )
-        )
+        router.fragmentManager()?.let {
+            CashUI.showSupportPage(CashSupport.Builder().detail(Topic.BRD_REWARDS), it)
+        }
     }
 
     override fun reviewBrd() {
@@ -253,13 +248,13 @@ class RouterNavigator(
         router.fragmentManager()?.let {
             when(effect.articleId) {
                 BRConstants.FAQ_SET_PIN -> {
-                    CashUI.showSupportPage(CashSupport.Builder().detail(GeneralSupportPage.PIN), it)
+                    CashUI.showSupportPage(CashSupport.Builder().detail(Topic.PIN), it)
                 }
                 BRConstants.FAQ_IMPORT_WALLET -> {
-                    CashUI.showSupportPage(CashSupport.Builder().detail(GeneralSupportPage.IMPORT_WALLET), it)
+                    CashUI.showSupportPage(CashSupport.Builder().detail(Topic.IMPORT_WALLET), it)
                 }
                 BRConstants.FAQ_PAPER_KEY -> {
-                    CashUI.showSupportPage(CashSupport.Builder().detail(GeneralSupportPage.RECOVERY_KEY), it)
+                    CashUI.showSupportPage(CashSupport.Builder().detail(Topic.RECOVERY_KEY), it)
                 } else -> {
                     CashUI.showSupportPage(CashSupport.Builder(), it)
                 }

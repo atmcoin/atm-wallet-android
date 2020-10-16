@@ -34,8 +34,6 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import cash.just.support.CashSupport
-import cash.just.support.pages.GeneralSupportPage
-import cash.just.support.pages.TroubleShootingPage
 import cash.just.ui.CashUI
 import com.bluelinelabs.conductor.RouterTransaction
 import com.breadwallet.R
@@ -80,6 +78,8 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import cash.just.support.pages.Topic
+
 
 private const val CURRENCY_CODE = "CURRENCY_CODE"
 private const val CRYPTO_REQUEST_LINK = "CRYPTO_REQUEST_LINK"
@@ -182,7 +182,7 @@ class SendSheetController(args: Bundle? = null) :
         if (dialogId == DIALOG_PAYMENT_ERROR) {
             router.fragmentManager()?.let {
                 // check if fastsync is off to show error: could not publish transaction
-                CashUI.showSupportPage(CashSupport.Builder().detail(TroubleShootingPage.ERROR_PUBLISH_TRANSACTION_P2P), it)
+                CashUI.showSupportPage(CashSupport.Builder().detail(Topic.ERROR_PUBLISH_TRANSACTION_P2P), it)
             }
         }
     }
@@ -190,7 +190,7 @@ class SendSheetController(args: Bundle? = null) :
     override fun bindView(modelFlow: Flow<M>): Flow<E> {
         buttonFaq.setOnClickListener {
             router.fragmentManager()?.let {
-                CashUI.showSupportPage(CashSupport.Builder().detail(GeneralSupportPage.SEND), it)
+                CashUI.showSupportPage(CashSupport.Builder().detail(Topic.SEND), it)
             }
         }
         return merge(
