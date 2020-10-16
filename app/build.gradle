@@ -332,6 +332,6 @@ dependencies {
 
     detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:$detekt_version"
 
-    implementation 'com.github.atmcoin:cash-ui-android:2.0.8'
+    implementation 'com.github.atmcoin:cash-ui-android:3.0.3'
     implementation project(":CashOverride")
 }
