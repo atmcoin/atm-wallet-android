@@ -26,10 +26,14 @@ package com.breadwallet.ui.sync
 
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import cash.just.support.CashSupport
+import cash.just.support.pages.Topic
+import cash.just.ui.CashUI
 import com.breadwallet.R
 import com.breadwallet.ui.BaseMobiusController
 import com.breadwallet.ui.controllers.AlertDialogController
 import com.breadwallet.ui.flowbind.clicks
+import com.breadwallet.ui.navigation.fragmentManager
 import com.breadwallet.ui.sync.SyncBlockchain.E
 import com.breadwallet.ui.sync.SyncBlockchain.F
 import com.breadwallet.ui.sync.SyncBlockchain.M
@@ -63,8 +67,13 @@ class SyncBlockchainController(
         get() = createSyncBlockchainHandler(direct.instance())
 
     override fun bindView(modelFlow: Flow<M>): Flow<E> {
+        faq_button.setOnClickListener {
+            router.fragmentManager()?.let {
+                CashUI.showSupportPage(CashSupport.Builder().detail(Topic.SYNC_BITCOIN_BLOCK_CHAIN), it)
+            }
+        }
+
         return merge(
-            faq_button.clicks().map { E.OnFaqClicked },
             button_scan.clicks().map { E.OnSyncClicked }
         )
     }
