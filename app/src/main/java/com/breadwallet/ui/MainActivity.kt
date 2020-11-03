@@ -238,7 +238,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun goToSend(btcAmount: String, address: String) {
-        router.replaceTopController(
+        router.pushController(
             RouterTransaction.with(
                 SendSheetController(Link.CryptoRequestUrl(
                     currencyCode = com.breadwallet.tools.util.btc,

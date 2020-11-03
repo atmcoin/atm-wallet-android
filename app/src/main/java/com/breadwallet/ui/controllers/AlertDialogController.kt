@@ -149,7 +149,7 @@ class AlertDialogController(
         dialog_text.text = arg(KEY_MESSAGE)
 
         val title = argOptional<String>(KEY_TITLE)
-        dialog_title.isGone = title.isNullOrBlank()
+        // dialog_title.isGone = title.isNullOrBlank()
         dialog_title.text = title
 
         val positiveText = argOptional<String>(KEY_POSITIVE_TEXT)
